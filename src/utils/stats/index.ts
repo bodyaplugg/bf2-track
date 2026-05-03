@@ -1,5 +1,4 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyEventQueryStringParameters, APIGatewayProxyResultV2 } from 'aws-lambda';
-import fetch from 'node-fetch';
 import { Project, ProjectConfig, ProjectConfigs, Source, SourceConfig, SourceConfigs } from './static';
 
 const CACHE_TTL: number = Number(process.env.CACHE_TTL) || 600;
@@ -208,30 +207,39 @@ type SearchForPlayersResponse = {
 type AspxResponse = GetPlayerInfoResponse | GetRankInfoResponse | GetAwardsInfoResponse  | GetUnlocksInfoResponse  | GetLeaderboardResponse | SearchForPlayersResponse
 
 async function fetchFromSource(projectConfig: ProjectConfig, sourceConfig: SourceConfig, queryParams: Record<string, string | undefined>): Promise<AspxResponse> {
-    const url = new URL(sourceConfig.endpoint, projectConfig.baseUrl);
+    let urlString = `${projectConfig.baseUrl}/${sourceConfig.endpoint}`;
+
+    urlString = urlString.replace(/\/+/g, '/');
+
+    const searchParams = new URLSearchParams();
     for (const key in queryParams) {
         const value = queryParams[key];
-        if (value) {
-            url.searchParams.append(key, value);
+        if (value && key !== 'project' && key !== 'groupValues') {
+            searchParams.append(key, value);
         }
     }
 
-    const response = await fetch(url.toString(), {
+    if (sourceConfig.endpoint.includes('searchforplayers') && !searchParams.has('where')) {
+        searchParams.append('where', 'm');
+    }
+
+    const finalUrl = `${urlString}?${searchParams.toString()}`;
+
+    const response = await fetch(finalUrl, {
         headers: projectConfig.defaultHeaders
     });
 
-    // Parse BF2 data format
     const content = await response.text();
     return parseBf2Response(content, sourceConfig.propertyKeys, sourceConfig.forceReturnArray);
 }
 
 function parseBf2Response(rawResponse: string, propertyKeys: string[] | undefined, forceReturnArray = false): AspxResponse {
-    // Split response into lines
     const lines = rawResponse.split('\n');
 
-    // Make sure first line indicates ok status
     const firstLine = lines.shift();
     if (firstLine?.trim() != 'O') {
+        console.warn("BF2 Server returned error code:", firstLine);
+        console.warn("Full response body:", rawResponse);
         /**
          * Throw specific error if player was not found, else use generic message
          * BF2Hub returns E\t998 if a player was not found
