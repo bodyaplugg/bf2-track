@@ -1,7 +1,7 @@
 import { main } from './index';
 import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';
 
-type Project = 'bf2hub' | 'playbf2';
+export type Project = 'bf2hub' | 'playbf2';
 type Source = 'getplayerinfo' | 'getrankinfo' | 'getawardsinfo' | 'getunlocksinfo' | 'getleaderboard' | 'searchforplayers';
 
 async function apiRequest(source: Source, params: Record<string, string>) {

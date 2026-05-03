@@ -7,20 +7,20 @@ export type ProjectConfig = {
 
 export const ProjectConfigs: Record<Project, ProjectConfig> = {
     bf2hub: {
-        baseUrl: 'http://official.ranking.bf2hub.com/ASP/',
+        baseUrl: '/api-hub',
         defaultHeaders: {
             'User-Agent': 'GameSpyHTTP/1.0',
             Host: 'BF2web.gamespy.com'
         }
     },
     playbf2: {
-        baseUrl: 'http://bf2web.playbf2.ru/ASP/',
+        baseUrl: '/api-play',
         defaultHeaders: {
             'User-Agent': 'GameSpyHTTP/1.0'
         }
     },
     phoenix: {
-        baseUrl: 'http://bf2.phoenixnetwork.net/ASP/',
+        baseUrl: '/api-phoenix',
         defaultHeaders: {
             'User-Agent': 'GameSpyHTTP/1.0'
         }
