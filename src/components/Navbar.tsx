@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {stats, Project} from "../utils/stats/stats";
+import { useNavigate, Link } from 'react-router-dom';
 import './Navbar.css';
 
 interface PlayerPreview {
@@ -33,6 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const searchRef = useRef<HTMLDivElement>(null);
     const debouncedNickname = useDebounce(nickname, 300);
+    const navigate = useNavigate();
 
     const projects: Project[] = ['bf2hub', 'playbf2'];
 
@@ -42,6 +44,13 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
             onSearch(nickname, project);
             setShowResults(false);
         }
+    };
+
+    const handlePlayerClick = (pid: string) => {
+        setShowResults(false);
+        setNickname('');
+
+        navigate(`/player/${pid}?project=${project}`);
     };
 
     useEffect(() => {
@@ -92,10 +101,10 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
         <nav className="navbar">
             <div className="navbar-container">
                 <div className="navbar-logo">
-                    <a href="/">
+                    <Link to="/">
                         <span className="logo-main">BF2</span>
                         <span className="logo-sub">-TRACK</span>
-                    </a>
+                    </Link>
                 </div>
 
                 <form className="navbar-search-form" onSubmit={handleSubmit}>
@@ -146,11 +155,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
                                         <div
                                             key={player.id}
                                             className="live-result-item"
-                                            onClick={() => {
-                                                setNickname(player.nickname);
-                                                onSearch(player.nickname, project);
-                                                setShowResults(false);
-                                            }}
+                                            onClick={() => handlePlayerClick(player.id)}
                                         >
                                             <span className="res-nick">{player.nickname}</span>
                                             <span className={`res-status ${player.isOnline ? 'online' : 'offline'}`}></span>

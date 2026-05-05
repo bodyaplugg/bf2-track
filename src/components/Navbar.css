@@ -1,16 +1,3 @@
-:root {
-    --bg-color: #121212;
-    --surface-color: #1f1f1f;
-    --border-color: #333333;
-    --text-primary: #ffffff;
-    --text-secondary: #aaaaaa;
-    --accent-color: #ff9f43;
-    --accent-hover: #ffbb73;
-    --success-color: #2ed573;
-    --font-main: 'Google Sans', sans-serif;
-    --font-logo: 'Rajdhani', sans-serif;
-}
-
 .navbar {
     background-color: var(--bg-color);
     border-bottom: 1px solid var(--border-color);
