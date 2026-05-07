@@ -40,4 +40,15 @@ module.exports = function(app) {
             pathRewrite: { '^/api-phoenix': '/ASP' },
         })
     );
+
+    app.use(
+        '/live-stats',
+        createProxyMiddleware({
+            target: 'https://api.bflist.io/bf2/v1/',
+            changeOrigin: true,
+            secure: false,
+            followRedirects: true,
+            pathRewrite: { '^/live-stats': '' },
+        })
+    );
 };
