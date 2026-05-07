@@ -1,0 +1,148 @@
+export const allAwardsConfig = [
+    { id: '1031406', type: 'badge', name: 'Бій ножем', spriteIdx: 7 },
+    { id: '1031619', type: 'badge', name: 'Бій пістолетои', spriteIdx: 8 },
+    { id: '1032415', type: 'badge', name: 'Вибухотехнік', spriteIdx: 12 },
+    { id: '1190601', type: 'badge', name: 'Перша допомога', spriteIdx: 13 },
+    { id: '1190507', type: 'badge', name: 'Інженер', spriteIdx: 12 },
+    { id: '1191819', type: 'badge', name: 'Постачання', spriteIdx: 14 },
+    { id: '1190304', type: 'badge', name: 'Командування', spriteIdx: 11 },
+    { id: '1260602', type: 'badge', name: 'Тактичне озброєння підтримки', spriteIdx: 20 },
+    { id: '1260708', type: 'badge', name: 'Спеціаліст із гака-кішки', spriteIdx: 21 },
+    { id: '1261105', type: 'badge', name: 'Інженер-спеціаліст', spriteIdx: 22 },
+    { id: '1261109', type: 'badge', name: 'Снайпер-спеціаліст', spriteIdx: 23 },
+    { id: '1261113', type: 'badge', name: 'Медик-спеціаліст', spriteIdx: 24 },
+    { id: '1261115', type: 'badge', name: 'Спеціаліст', spriteIdx: 25 },
+    { id: '1261119', type: 'badge', name: 'Штурмовик-спеціаліст', spriteIdx: 26 },
+    { id: '1261120', type: 'badge', name: 'Протитанковий спеціаліст', spriteIdx: 27 },
+    { id: '1261121', type: 'badge', name: 'Спеціаліст підтримки', spriteIdx: 28 },
+    { id: '1262612', type: 'badge', name: 'Спеціаліст із зіплайну', spriteIdx: 29 },
+
+    { id: '2051907', type: 'medal', name: 'Золота зірка', spriteIdx: 9 },
+    { id: '2051919', type: 'medal', name: 'Срібна зірка', spriteIdx: 10 },
+    { id: '2051902', type: 'medal', name: 'Бронзова зірка', spriteIdx: 8 },
+    { id: '2191608', type: 'medal', name: 'Пурпурове серце', spriteIdx: 17 },
+    { id: '2191319', type: 'medal', name: 'Медаль «За бездоганну службу»', spriteIdx: 16 },
+    { id: '2190303', type: 'medal', name: 'Медаль за бойові дії', spriteIdx: 11 },
+    { id: '2190309', type: 'medal', name: 'Медаль за повітряний бій', spriteIdx: 13 },
+    { id: '2190318', type: 'medal', name: 'Медаль за бронетанковий бій', spriteIdx: 14 },
+    { id: '2190308', type: 'medal', name: 'Вертолітна медаль', spriteIdx: 12 },
+    { id: '2190703', type: 'medal', name: 'Медаль за зразкову поведінку', spriteIdx: 15 },
+    { id: '2020903', type: 'medal', name: 'Бойова піхотна медаль', spriteIdx: 2 },
+    { id: '2020913', type: 'medal', name: 'Піхотна медаль влучного стрільця', spriteIdx: 3 },
+    { id: '2020919', type: 'medal', name: 'Медаль влучного стрільця', spriteIdx: 4 },
+    { id: '2021322', type: 'medal', name: 'Піхотна медаль снайпера', spriteIdx: 5 },
+    { id: '2020419', type: 'medal', name: 'Медаль за видатні заслуги', spriteIdx: 0 },
+    { id: '2021403', type: 'medal', name: 'Воєнно-морський хрест', spriteIdx: 6 },
+    { id: '2021613', type: 'medal', name: 'Народний медальйон', spriteIdx: 7 },
+    { id: '2020719', type: 'medal', name: 'Золота ятаган', spriteIdx: 1 },
+    { id: '2270521', type: 'medal', name: 'Медаль особливої служби Євросоюзу', spriteIdx: 27 },
+    { id: '2261613', type: 'medal', name: 'Медаль особливої служби спецназу РФ', spriteIdx: 22 },
+    { id: '2261919', type: 'medal', name: 'Медаль особливої служби британського SAS', spriteIdx: 26 },
+    { id: '2261802', type: 'medal', name: 'Медаль особливої служби повстанців', spriteIdx: 23 },
+    { id: '2261303', type: 'medal', name: 'Медаль особливої служби спецназу БСГ', spriteIdx: 21 },
+    { id: '2261913', type: 'medal', name: 'Медаль особливої служби Navy SEALs США', spriteIdx: 25 },
+    { id: '2260914', type: 'medal', name: 'Медаль особливої служби повстанських сил', spriteIdx: 20 },
+
+    { id: '3040109', type: 'ribbon', name: 'Орденська стрічка ППО', spriteIdx: 0 },
+    { id: '3040718', type: 'ribbon', name: 'Орденська стрічка наземної оборони', spriteIdx: 1 },
+    { id: '3150914', type: 'ribbon', name: 'Орденська стрічка офіцера піхоти', spriteIdx: 2 },
+    { id: '3151920', type: 'ribbon', name: 'Орденська стрічка штабного офіцера', spriteIdx: 3 },
+    { id: '3190105', type: 'ribbon', name: 'Орденська стрічка авіаційної служби', spriteIdx: 4 },
+    { id: '3190118', type: 'ribbon', name: 'Орденська стрічка бронетанкової служби', spriteIdx: 5 },
+    { id: '3190318', type: 'ribbon', name: 'Орденська стрічка екіпажу', spriteIdx: 6 },
+    { id: '3190409', type: 'ribbon', name: 'Орденська стрічка за видатні заслуги', spriteIdx: 7 },
+    { id: '3190605', type: 'ribbon', name: 'Орденська стрічка Далекосхідної служби', spriteIdx: 8 },
+    { id: '3190803', type: 'ribbon', name: 'Орденська стрічка вертолітної служби', spriteIdx: 9 },
+    { id: '3191305', type: 'ribbon', name: 'Орденська стрічка Близькосхідної служби', spriteIdx: 10 },
+    { id: '3211305', type: 'ribbon', name: 'Орденська стрічка заслуженого підрозділу', spriteIdx: 11 },
+    { id: '3212201', type: 'ribbon', name: 'Орденська стрічка за відвагу', spriteIdx: 12 },
+    { id: '3240102', type: 'ribbon', name: 'Орденська стрічка десантника', spriteIdx: 13 },
+    { id: '3240301', type: 'ribbon', name: 'Орденська стрічка за бойові дії', spriteIdx: 14 },
+    { id: '3240703', type: 'ribbon', name: 'Орденська стрічка за зразкову поведінку', spriteIdx: 15 },
+    { id: '3241213', type: 'ribbon', name: 'Орденська стрічка Ордена Легіону', spriteIdx: 16 },
+    { id: '3242303', type: 'ribbon', name: 'Орденська стрічка воєнного коледжу', spriteIdx: 17 },
+    { id: '3260118', type: 'ribbon', name: 'Спеціаліст броньованого транспорту', spriteIdx: 18 },
+    { id: '3260318', type: 'ribbon', name: 'Спеціаліст екіпажу', spriteIdx: 19 },
+    { id: '3260803', type: 'ribbon', name: 'Спеціаліст вертольота', spriteIdx: 20 },
+    { id: '3260914', type: 'ribbon', name: 'Служба в повстанських силах', spriteIdx: 21 },
+    { id: '3261319', type: 'ribbon', name: 'Служба в спецназі БСГ', spriteIdx: 22 },
+    { id: '3261805', type: 'ribbon', name: 'Служба у повстанців', spriteIdx: 23 },
+    { id: '3261819', type: 'ribbon', name: 'Служба у спецназі РФ', spriteIdx: 24 },
+    { id: '3261901', type: 'ribbon', name: 'Служба у британському SAS', spriteIdx: 25 },
+    { id: '3261919', type: 'ribbon', name: 'Служба у Navy SEALs США', spriteIdx: 26 },
+    { id: '3271401', type: 'ribbon', name: 'Північноамериканська служба', spriteIdx: 27 }
+];
+
+export const ranksConfig = [
+    { id: 0, name: "Рядовий", requiredXP: 0 },
+    { id: 1, name: "Рядовий першого класу", requiredXP: 150 },
+    { id: 2, name: "Младший капрал", requiredXP: 500 },
+    { id: 3, name: "Капрал", requiredXP: 800 },
+    { id: 4, name: "Сержант", requiredXP: 2500 },
+    { id: 5, name: "Штаб-сержант", requiredXP: 5000 },
+    { id: 6, name: "Комендор-сержант", requiredXP: 8000 },
+    { id: 7, name: "Майстер-сержант", requiredXP: 20000 },
+    { id: 8, name: "Перший сержант", requiredXP: 20000 },
+    { id: 9, name: "Майстер-комендор-сержант", requiredXP: 50000 },
+    { id: 10, name: "Сержант-майор", requiredXP: 50000 },
+    { id: 11, name: "Сержант-майор корпусу", requiredXP: 50000 },
+    { id: 12, name: "Другий лейтенант", requiredXP: 60000 },
+    { id: 13, name: "Перший лейтенант", requiredXP: 75000 },
+    { id: 14, name: "Капітан", requiredXP: 90000 },
+    { id: 15, name: "Майор", requiredXP: 115000 },
+    { id: 16, name: "Підполковник", requiredXP: 125000 },
+    { id: 17, name: "Полковник", requiredXP: 150000 },
+    { id: 18, name: "Бригадний генерал", requiredXP: 180000 },
+    { id: 19, name: "Генерал-майор", requiredXP: 180000 },
+    { id: 20, name: "Генерал-лейтенант", requiredXP: 200000 },
+    { id: 21, name: "Генерал", requiredXP: 200000 }
+];
+
+export const classConfig = [
+    { id: 0, name: 'Анти-Танк', awardId: '1031120', spriteIdx: 5 },
+    { id: 1, name: 'Штурмовик', awardId: '1031119', spriteIdx: 4 },
+    { id: 2, name: 'Інженер', awardId: '1031105', spriteIdx: 0 },
+    { id: 3, name: 'Медик', awardId: '1031113', spriteIdx: 2 },
+    { id: 4, name: 'Спецназ', awardId: '1031115', spriteIdx: 3 },
+    { id: 5, name: 'Підтримка', awardId: '1031121', spriteIdx: 6 },
+    { id: 6, name: 'Снайпер', awardId: '1031109', spriteIdx: 1 },
+];
+
+export const armyNames = [
+    'USMC', 'MEC', 'PLA', 'EU', 'SEAL', 'SAS',
+    'Spetznas', 'MEC SF', 'Rebels', 'Insurgents'
+];
+
+export const weaponNames = [
+    'Штурмові гвинтівки', 'Підствольні гранатомети', 'Карабіни',
+    'Пістолети-кулемети', 'Снайперські гвинтівки', 'Пістолети',
+    'Протитанкова зброя', 'Кулемети', 'Дробовики', 'Ніж',
+    'Дефібрилятор', 'Вибухівка', 'Гранати'
+];
+
+export const vehicleConfig = [
+    { id: 0, name: 'Танки', awardId: '1220118', spriteIdx: 16 },
+    { id: 1, name: 'Літаки', awardId: '1220122', spriteIdx: 17 },
+    { id: 2, name: 'ППО', awardId: '1220104', spriteIdx: 15 },
+    { id: 3, name: 'Вертольоти', awardId: '1220803', spriteIdx: 18 },
+    { id: 4, name: 'Транспорт', awardId: '1222016', spriteIdx: 19 },
+    { id: 6, name: 'Наземний захист', awardId: '1031923', spriteIdx: 9 },
+];
+
+export const unlocksConfig = [
+    { id: '11', name: 'DAO-12', spriteIdx: 0 },
+    { id: '22',   name: 'G3A3',   spriteIdx: 1 },
+    { id: '33',  name: 'MK3A1',  spriteIdx: 2 },
+    { id: '44',  name: 'L85A1',  spriteIdx: 3 },
+    { id: '55',   name: 'G36C',   spriteIdx: 4 },
+    { id: '66',    name: 'PKM',    spriteIdx: 5 },
+    { id: '77',    name: 'M95',    spriteIdx: 6 },
+
+    { id: '444',    name: 'P90',    spriteIdx: 12 },
+    { id: '88', name: 'FN2000', spriteIdx: 7 },
+    { id: '99',    name: 'MP7',    spriteIdx: 8 },
+    { id: '111',   name: 'G36E',   spriteIdx: 9 },
+    { id: '222', name: 'SCAR-L', spriteIdx: 10 },
+    { id: '333',   name: 'MG36',   spriteIdx: 11 },
+    { id: '555',  name: 'L96A1',  spriteIdx: 13 }
+];

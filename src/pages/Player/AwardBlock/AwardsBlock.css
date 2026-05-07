@@ -1,0 +1,127 @@
+.award-stats-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
+}
+
+.award-stats-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.awards-main-container {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.award-group {
+    margin-bottom: 40px;
+}
+
+.award-group-title {
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.awards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.award-item {
+    width: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.award-locked {
+    opacity: 0.5;
+}
+
+.award-icon-container {
+    width: 85px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.award-sprite {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.sprite-default {
+    width: 85px;
+    height: 85px;
+}
+
+.sprite-ribbon {
+    width: 70px;
+    height: 20px;
+}
+
+.award-locked .award-sprite {
+    filter: grayscale(1);
+}
+
+.award-counter {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    background: #000;
+    color: #ff9d00;
+    font-size: 10px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    border: 1px solid #ff9d00;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.award-name {
+    font-size: 11px;
+    font-weight: bold;
+    color: #eee;
+    margin-top: 8px;
+    min-height: 2.4em;
+    line-height: 1.2;
+}
+
+.award-date {
+    font-size: 9px;
+    color: #888;
+}
+
+.award-sprite {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    transition: filter 0.2s;
+}
+
+.sprite-default {
+    width: 64px;
+    height: 64px;
+}
+
+.sprite-ribbon {
+    width: 64px;
+    height: 24px;
+}
+
+.rank-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 150px;
+}

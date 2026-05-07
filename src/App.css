@@ -21,3 +21,39 @@ body {
     --font-main: 'Google Sans', sans-serif;
     --font-logo: 'Rajdhani', sans-serif;
 }
+
+.p-loader, .p-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    width: 100%;
+    font-family: 'Urbanist', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.p-loader {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 18px;
+    position: relative;
+}
+
+.p-loader::before {
+    content: '';
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(222, 255, 154, 0.1);
+    border-top: 2px solid var(--accent-color);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
