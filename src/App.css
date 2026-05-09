@@ -2,13 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #1f1f1f;
-    margin: 0;
-    padding: 0;
-    padding-top: 70px;
-}
-
 :root {
     --bg-color: #121212;
     --surface-color: #1f1f1f;
@@ -51,9 +44,4 @@ body {
     border-radius: 50%;
     margin-bottom: 20px;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }

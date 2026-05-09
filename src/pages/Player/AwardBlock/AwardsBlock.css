@@ -102,26 +102,7 @@
     color: #888;
 }
 
-.award-sprite {
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    transition: filter 0.2s;
-}
-
-.sprite-default {
-    width: 64px;
-    height: 64px;
-}
-
 .sprite-ribbon {
     width: 64px;
     height: 24px;
-}
-
-.rank-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    min-width: 150px;
 }

@@ -1,24 +1,10 @@
 /* Базова сітка та контейнери */
-.stats-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
 @media (min-width: 768px) {
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1600px) {
     .stats-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-.stats-card {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 16px;
-    padding: 25px;
-    list-style: none;
 }
 
 .stats-card h3 {
@@ -29,13 +15,6 @@
     letter-spacing: 1px;
     border-bottom: 1px solid #333;
     padding-bottom: 10px;
-}
-
-.data-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #222;
 }
 
 .data-row:last-child {
@@ -51,22 +30,9 @@
     color: #f5f5f5;
 }
 
-.award-stats-item {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #222;
-}
-
 .award-stats-item:last-child {
     border-bottom: none;
     margin-bottom: 0;
-}
-
-.other-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
 }
 
 .other-header span {
@@ -81,9 +47,6 @@
 }
 
 .award-stats-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
     background: rgba(255, 255, 255, 0.02);
     padding: 10px;
     border-radius: 10px;
@@ -99,19 +62,9 @@
 }
 
 .subtext {
-    font-size: 10px;
-    color: #555;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 0.5px;
-}
-
-.other-stats-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    font-size: 12px;
-    color: #888;
 }
 
 .other-stats-row span {
