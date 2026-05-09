@@ -44,7 +44,7 @@ module.exports = function(app) {
     app.use(
         '/live-stats',
         createProxyMiddleware({
-            target: 'https://api.bflist.io/bf2/v1/',
+            target: 'https://api.bflist.io/v2/bf2/',
             changeOrigin: true,
             secure: false,
             followRedirects: true,
