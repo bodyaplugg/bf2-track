@@ -1,0 +1,85 @@
+/* globals.css */
+
+body {
+    background: #1f1f1f;
+    margin: 0;
+    padding: 0;
+    padding-top: 70px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.award-sprite {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    transition: filter 0.2s;
+}
+
+.sprite-default {
+    width: 64px;
+    height: 64px;
+}
+
+.rank-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 150px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.stats-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 25px;
+    list-style: none;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+}
+
+.award-stats-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #222;
+}
+
+.award-stats-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.other-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.subtext {
+    font-size: 10px;
+    color: #555;
+}
+
+.other-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: #888;
+}
