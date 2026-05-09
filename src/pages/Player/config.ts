@@ -109,8 +109,8 @@ export const classConfig = [
 ];
 
 export const armyNames = [
-    'USMC', 'MEC', 'PLA', 'EU', 'SEAL', 'SAS',
-    'Spetznas', 'MEC SF', 'Rebels', 'Insurgents'
+    'USMC', 'MEC', 'PLA', 'SEAL', 'SAS', 'Spetznas',
+    'MEC SF', 'Rebels', 'Insurgents', 'EU'
 ];
 
 export const weaponNames = [
