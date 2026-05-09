@@ -138,6 +138,21 @@ const ServerPage: React.FC = () => {
         return <div className="p-error">Сервер не знайдено.</div>;
     }
 
+    const mapDetails = [
+        { label: 'Режим', value: gamemodes[server.gameType] || server.gameType },
+        { label: 'Обмеження по часу', value: server.timelimit ? `${server.timelimit / 60}m` : '∞' }
+    ];
+
+    const settings = [
+        { label: 'Мод', value: gametypes[server.gameVariant] || server.gameVariant },
+        { label: 'Ранговий', value: server.ranked ? 'Так' : 'Ні', className: server.ranked ? "status-on" : "status-off" },
+        { label: 'Античит', value: server.anticheat ? 'Так' : 'Ні', className: "status-neutral" },
+        { label: 'Дружній вогонь', value: server.friendlyfire ? 'Так' : 'Ні' },
+        { label: 'Автобаланс', value: server.autobalance ? 'Так' : 'Ні' },
+        { label: 'Battlerecorder', value: server.battlerecorder ? 'Так' : 'Ні' },
+        { label: 'Боти', value: server.bots ? 'Так' : 'Ні' },
+    ];
+
     return (
         <div className="server-page-container">
             <div className="server-hero section">
@@ -184,8 +199,8 @@ const ServerPage: React.FC = () => {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {server.players?.filter(p => p.team === team.index).map(player => (
-                                            <tr key={player.pid}>
+                                        {server.players?.filter(p => p.team === team.index).map((player, playerIndex) => (
+                                            <tr key={playerIndex}>
                                                 <td>
                                                     <Link to={`/player/${player.pid}?project=bf2hub`} className="player-link">
                                                         {player.name}
@@ -214,48 +229,24 @@ const ServerPage: React.FC = () => {
                             <div className="map-size">Розмір: {server.mapSize}</div>
                         </div>
                         <div className="info-grid">
-                            <div className="info-item">
-                                <label>Режим</label>
-                                <span>{gamemodes[server.gameType] || server.gameType}</span>
-                            </div>
-                            <div className="info-item">
-                                <label>Обмеження по часу</label>
-                                <span>{server.timelimit ? `${server.timelimit / 60}m` : '∞'}</span>
-                            </div>
+                            {mapDetails.map(detail => (
+                                <div className="info-item" key={detail.label}>
+                                    <label>{detail.label}</label>
+                                    <span>{detail.value}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
                     <div className="section settings-card">
                         <h2>Налаштування</h2>
                         <div className="settings-list">
-                            <div className="setting-row">
-                                <span>Мод</span>
-                                <span>{gametypes[server.gameVariant] || server.gameVariant}</span>
-                            </div>
-                            <div className="setting-row">
-                                <span>Ранговий</span>
-                                <span className={server.ranked ? "status-on" : "status-off"}>{server.ranked ? 'Так' : 'Ні'}</span>
-                            </div>
-                            <div className="setting-row">
-                                <span>Античит</span>
-                                <span className="status-neutral">{server.anticheat ? 'Так' : 'Ні'}</span>
-                            </div>
-                            <div className="setting-row">
-                                <span>Дружній вогонь</span>
-                                <span>{server.friendlyfire ? 'Так' : 'Ні'}</span>
-                            </div>
-                            <div className="setting-row">
-                                <span>Автобаланс</span>
-                                <span>{server.autobalance ? 'Так' : 'Ні'}</span>
-                            </div>
-                            <div className="setting-row">
-                                <span>Battlerecorder</span>
-                                <span>{server.battlerecorder ? 'Так' : 'Ні'}</span>
-                            </div>
-                            <div className="setting-row">
-                                <span>Боти</span>
-                                <span>{server.bots ? 'Так' : 'Ні'}</span>
-                            </div>
+                            {settings.map(setting => (
+                                <div className="setting-row" key={setting.label}>
+                                    <span>{setting.label}</span>
+                                    <span className={setting.className}>{setting.value}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
