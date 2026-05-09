@@ -22,11 +22,19 @@ module.exports = function(app) {
     app.use(
         '/api-play',
         createProxyMiddleware({
-            target: 'http://bf2web.playbf2.ru/ASP/',
+            target: 'http://bf2web.playbf2.ru',
             changeOrigin: true,
             secure: false,
             followRedirects: true,
             pathRewrite: { '^/api-play': '/ASP' },
+            on: {
+                proxyReq: (proxyReq) => {
+                    proxyReq.setHeader('User-Agent', 'GameSpyHTTP/1.0');
+                },
+                error: (err, req, res) => {
+                    console.error('[Proxy Error]:', err);
+                }
+            }
         })
     );
 

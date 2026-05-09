@@ -219,7 +219,7 @@ async function fetchFromSource(projectConfig: ProjectConfig, sourceConfig: Sourc
         }
     }
 
-    if (sourceConfig.endpoint.includes('searchforplayers') && !searchParams.has('where')) {
+    if (sourceConfig.endpoint.includes('searchforplayers') && !searchParams.has('where') && queryParams?.project === 'bf2hub') {
         searchParams.append('where', 'm');
     }
 

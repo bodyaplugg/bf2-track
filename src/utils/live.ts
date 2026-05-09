@@ -1,20 +1,35 @@
-async function fetchFromApi<T>(path: string): Promise<T | null> {
+async function fetchFromApi<T>(path: string, params?: Record<string, any>): Promise<T | null> {
     try {
-        const response = await fetch('/live-stats/' + path);
+        const url = new URL('/live-stats/' + path, window.location.origin);
+        if (params) {
+            Object.entries(params).forEach(([key, value]) => {
+                if (value !== undefined && value !== null && value !== '') {
+                    url.searchParams.append(key, String(value));
+                }
+            });
+        }
+
+        const response = await fetch(url.toString());
+
         if (response.status === 404) {
             return null;
         }
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const error = new Error(`HTTP error! status: ${response.status}`);
+            try {
+                (error as any).data = await response.json();
+            } catch (e) {
+                // The error response may not be JSON
+            }
+            throw error;
         }
 
-        const body = await response.json();
-        return body;
+        return await response.json();
 
     } catch (error) {
         console.error(`Fetch error for ${path}:`, error);
-        return null;
+        throw error; // Re-throw to be handled by the calling component
     }
 }
 
@@ -26,8 +41,8 @@ export async function getPlayerServer(name: string) {
     return fetchFromApi(`players/${encodeURIComponent(name)}/server`);
 }
 
-export async function getServers(page: number | string) {
-    return fetchFromApi(`servers/${page}`);
+export async function getServers(perPage?: number, cursor?: string, after?: string) {
+    return fetchFromApi('servers', { perPage, cursor, after });
 }
 
 export async function getServer(ip: string, port: string | number) {

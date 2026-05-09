@@ -18,16 +18,16 @@ async function apiRequest(source: Source, params: Record<string, string>) {
             const body = JSON.parse(result.body as string);
 
             if (result.statusCode !== 200) {
-                console.error(`Error [${source}][${result.statusCode}]:`, body.errors || body);
-                return null;
+                const errorMessage = (body.errors && body.errors[0]) || `API error: Status ${result.statusCode}`;
+                throw new Error(errorMessage);
             }
 
             return body;
         }
-        return null;
+        throw new Error('Invalid API response format');
     } catch (error) {
-        console.error(`[${source}] Critical error:`, error);
-        return null;
+        // Re-throw the error to be handled by the calling component
+        throw error;
     }
 }
 
