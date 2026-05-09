@@ -42,7 +42,7 @@ export async function getPlayerServer(name: string) {
 }
 
 export async function getServers(perPage?: number, cursor?: string, after?: string) {
-    return fetchFromApi('servers', { perPage, cursor, after });
+    return fetchFromApi('servers', { perPage, cursor, after, fields: 'ranked,voip,pba' });
 }
 
 export async function getServer(ip: string, port: string | number) {

@@ -1,5 +1,5 @@
 import { formatDate } from '../../../utils/formatters'
-import {ranksConfig} from "../config";
+import {ranksConfig} from "../../../utils/config";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import { Link } from "react-router-dom";
@@ -67,7 +67,7 @@ const PlayerHero = ({project}: any) => {
                     <>
                         <div className="server-details">
                             <span className="label">ЗАРАЗ У БОЮ</span>
-                            <Link to={`server/${live.ip}:${live.port}`} className="server-name" title={live.name}>{live.name}</Link>
+                            <Link to={`/servers/${live.ip}/${live.port}`} className="server-name" title={live.name}>{live.name}</Link>
 
                             <div className="server-meta">
                                 <span className="map-name">{live.mapName}</span>

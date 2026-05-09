@@ -146,3 +146,15 @@ export const unlocksConfig = [
     { id: '333',   name: 'MG36',   spriteIdx: 11 },
     { id: '555',  name: 'L96A1',  spriteIdx: 13 }
 ];
+
+export const gamemodes: Record<string, string> = {
+    gpm_coop : "Co-op",
+    gpm_cq : "Conquest",
+}
+
+export const gametypes: Record<string, string> = {
+    bf2 : "-",
+    xpack : "BF2:SF",
+    bf2rw: "Real War",
+    aix2: "AIX2"
+}

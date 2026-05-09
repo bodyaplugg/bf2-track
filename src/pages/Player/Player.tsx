@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { stats } from '../../utils/stats/stats';
 import { getPlayerServer } from "../../utils/live";
 import { safeNum, toHours } from "../../utils/formatters";
-import { armyNames, weaponNames, classConfig, vehicleConfig } from './config'
+import { armyNames, weaponNames, classConfig, vehicleConfig } from '../../utils/config'
 
 import './Player.css';
 
@@ -34,7 +34,6 @@ const Player: React.FC = () => {
                 const resultAwards = await stats.getAwards(pid!, project)
                 const resultUnlock = await stats.getUnlocks(pid!, project)
                 const resultLive = await getPlayerServer(result.player.nick);
-                console.log(resultUnlock)
                 dispatch(setPlayerData({ data: result, awards: resultAwards, unlocks: resultUnlock, live: resultLive }));
             } catch (e) {
                 console.error(e);

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { safeNum, formatDate } from "../../../utils/formatters";
 import AwardImage from "../../../components/AwardImage";
-import {allAwardsConfig} from "../config";
+import {allAwardsConfig} from "../../../utils/config";
 import './AwardsBlock.css';
 
 const AwardsBlock = () => {

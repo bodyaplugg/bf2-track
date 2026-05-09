@@ -41,9 +41,9 @@
 .player-dates {
     display: flex;
     gap: 20px;
-    margin-top: 12px; /* Відступ від PID */
-    font-size: 12px;  /* Зменшений шрифт */
-    color: #666;      /* Сірий колір тексту */
+    margin-top: 12px;
+    font-size: 12px;
+    color: #666;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -54,7 +54,7 @@
 }
 
 .player-dates b {
-    color: #999;      /* Значення трохи світліші за лейбли, але все одно приглушені */
+    color: #999;
     margin-left: 5px;
     font-weight: 600;
 }

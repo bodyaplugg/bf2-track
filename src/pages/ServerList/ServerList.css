@@ -26,7 +26,7 @@
 
 .server-table-header, .server-row {
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr 1fr; /* Added one more column */
+    grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1fr; /* Added one more column */
     align-items: center;
     padding: 15px;
 }
@@ -53,6 +53,25 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.server-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.server-icons .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.pb-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.pb-icon-disabled {
+    filter: grayscale(100%) opacity(50%);
 }
 
 .server-name {

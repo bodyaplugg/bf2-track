@@ -117,79 +117,80 @@ const Navbar: React.FC<NavbarProps> = () => {
                     </Link>
                 </div>
 
-                <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
-                    <Link to="/servers" className="navbar-link">Servers</Link>
+                <div className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+                    <div className="navbar-links">
+                        <Link to="/servers" className="navbar-link">Servers</Link>
+                    </div>
+                    <div className="navbar-search">
+                        <form className="navbar-search-form" onSubmit={handleSubmit}>
+                            <div className="search-composite-group" ref={searchRef}>
+                                <div className={`custom-dropdown ${isDropdownOpen ? 'open' : ''}`} ref={dropdownRef}>
+                                    <div className="dropdown-trigger" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                                        {projectDisplayNames[project]}
+                                        <span className="arrow-icon">▼</span>
+                                    </div>
+                                    {isDropdownOpen && (
+                                        <ul className="dropdown-menu">
+                                            {projects.map((proj) => (
+                                                <li
+                                                    key={proj}
+                                                    className={project === proj ? 'selected' : ''}
+                                                    onClick={() => {
+                                                        setProject(proj);
+                                                        setIsDropdownOpen(false);
+                                                    }}
+                                                >
+                                                    {projectDisplayNames[proj]}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+
+                                <div className="input-wrapper">
+                                    <input
+                                        type="text"
+                                        className="search-input"
+                                        placeholder="Введіть нікнейм гравця..."
+                                        value={nickname || ''}
+                                        onChange={(e) => setNickname(e.target.value)}
+                                        onFocus={() => (nickname?.length || 0) >= 3 && setShowResults(true)}
+                                    />
+                                    {isSearching && <div className="inline-loader"></div>}
+                                </div>
+
+                                <button type="submit" className="search-button">
+                                    <span className="material-symbols-outlined">search</span>
+                                </button>
+
+                                {showResults && (nickname?.length || 0) >= 3 && (
+                                    <div className="live-search-results">
+                                        {searchError ? (
+                                            <div className="live-no-results error">{searchError}</div>
+                                        ) : searchResults.length > 0 ? (
+                                            searchResults.slice(0,8).map(player => (
+                                                <div
+                                                    key={player.id}
+                                                    className="live-result-item"
+                                                    onClick={() => handlePlayerClick(player.id)}
+                                                >
+                                                    <span className="res-nick">{player.nickname}</span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="live-no-results">Нікого не знайдено</div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <div className="mobile-menu-icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                     <span className="material-symbols-outlined">
                         {isMobileMenuOpen ? 'close' : 'menu'}
                     </span>
-                </div>
-
-                <div className={`navbar-search-wrapper ${isMobileMenuOpen ? 'open' : ''}`}>
-                    <form className="navbar-search-form" onSubmit={handleSubmit}>
-                        <div className="search-composite-group" ref={searchRef}>
-                            <div className={`custom-dropdown ${isDropdownOpen ? 'open' : ''}`} ref={dropdownRef}>
-                                <div className="dropdown-trigger" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                                    {projectDisplayNames[project]}
-                                    <span className="arrow-icon">▼</span>
-                                </div>
-                                {isDropdownOpen && (
-                                    <ul className="dropdown-menu">
-                                        {projects.map((proj) => (
-                                            <li
-                                                key={proj}
-                                                className={project === proj ? 'selected' : ''}
-                                                onClick={() => {
-                                                    setProject(proj);
-                                                    setIsDropdownOpen(false);
-                                                }}
-                                            >
-                                                {projectDisplayNames[proj]}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-
-                            <div className="input-wrapper">
-                                <input
-                                    type="text"
-                                    className="search-input"
-                                    placeholder="Введіть нікнейм гравця..."
-                                    value={nickname || ''}
-                                    onChange={(e) => setNickname(e.target.value)}
-                                    onFocus={() => (nickname?.length || 0) >= 3 && setShowResults(true)}
-                                />
-                                {isSearching && <div className="inline-loader"></div>}
-                            </div>
-
-                            <button type="submit" className="search-button">
-                                <span className="material-symbols-outlined">search</span>
-                            </button>
-
-                            {showResults && (nickname?.length || 0) >= 3 && (
-                                <div className="live-search-results">
-                                    {searchError ? (
-                                        <div className="live-no-results error">{searchError}</div>
-                                    ) : searchResults.length > 0 ? (
-                                        searchResults.slice(0,8).map(player => (
-                                            <div
-                                                key={player.id}
-                                                className="live-result-item"
-                                                onClick={() => handlePlayerClick(player.id)}
-                                            >
-                                                <span className="res-nick">{player.nickname}</span>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className="live-no-results">Нікого не знайдено</div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    </form>
                 </div>
             </div>
         </nav>

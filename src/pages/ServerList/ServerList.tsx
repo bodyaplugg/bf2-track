@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getServers } from '../../utils/live';
 import './ServerList.css';
+import {gamemodes, gametypes} from "../../utils/config";
 
 interface Server {
     ip: string;
@@ -11,25 +12,16 @@ interface Server {
     numPlayers: number;
     maxPlayers: number;
     gameType: string;
-    gameVariant: string; // Added mod field
+    gameVariant: string;
+    ranked: boolean;
+    voip: boolean;
+    anticheat: boolean;
 }
 
 interface ServersApiResponse {
     servers: Server[];
     cursor: string | null;
     hasMore: boolean;
-}
-
-const gamemodes: Record<string, string> = {
-    gpm_coop : "Co-op",
-    gpm_cq : "Conquest",
-}
-
-const gametypes: Record<string, string> = {
-    bf2 : "-",
-    xpack : "BF2:SF",
-    bf2rw: "Real War",
-    aix2: "AIX2"
 }
 
 const ServerList: React.FC = () => {
@@ -89,15 +81,24 @@ const ServerList: React.FC = () => {
             <h1>Server List</h1>
             <div className="server-table">
                 <div className="server-table-header">
-                    <div className="header-item server-name">Name</div>
-                    <div className="header-item server-players">Players</div>
-                    <div className="header-item server-map">Map</div>
-                    <div className="header-item server-mod">Mod</div>
-                    <div className="header-item server-gametype">Game Type</div>
+                    <div className="header-item server-icons"></div>
+                    <div className="header-item server-name">Назва</div>
+                    <div className="header-item server-players">Гравці</div>
+                    <div className="header-item server-map">Мапа</div>
+                    <div className="header-item server-mod">Мод</div>
+                    <div className="header-item server-gametype">Режим</div>
                 </div>
                 <div className="server-table-body">
                     {servers.map(server => (
                         <div key={`${server.ip}:${server.port}`} className="server-row">
+                            <div className="server-cell server-icons">
+                                <img src={`/assets/img/icons/${server.ranked ? '' : 'un'}ranked.png`} alt={server.ranked ? 'Ranked' : 'Unranked'} title={server.ranked ? 'Ranked' : 'Unranked'} />
+                                {server.voip 
+                                    ? <span className="material-symbols-outlined" title="VOIP enabled">headset</span> 
+                                    : <span className="material-symbols-outlined" title="VOIP disabled">headset_off</span>
+                                }
+                                <img src="/assets/img/icons/pb.png" alt={server.anticheat ? "PunkBuster Enabled" : "PunkBuster Disabled"} title={server.anticheat ? "PunkBuster Enabled" : "PunkBuster Disabled"} className={`pb-icon ${!server.anticheat ? 'pb-icon-disabled' : ''}`} />
+                            </div>
                             <div className="server-cell server-name">
                                 <Link to={`/servers/${server.ip}/${server.port}`}>{server.name}</Link>
                             </div>
