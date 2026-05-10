@@ -16,7 +16,7 @@ const StatsCard = ({title, stats}: CardProps) => {
             {stats.map((item, idx) => (
                 <li className="data-row" key={idx}>
                     <span>{item.label}</span>
-                    <b>{safeNum(item.value).toLocaleString()}</b>
+                    <b>{item.value}</b>
                 </li>
             ))}
         </ul>

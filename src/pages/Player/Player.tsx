@@ -63,7 +63,6 @@ const Player: React.FC = () => {
         { label: 'Раундів:', value: player.mode0 + player.mode1 + player.mode2 },
         { label: 'Перемог:', value: player.wins },
         { label: 'Поразок:', value: player.loss },
-        { label: 'Час у грі:', value: toHours(safeNum(player.time)) },
     ];
 
     const teamWorkStats = [
@@ -90,6 +89,7 @@ const Player: React.FC = () => {
     ]
 
     const timeStats = [
+        { label: 'Час у грі:', value: toHours(safeNum(player.time)) },
         { label: 'Командир', value: toHours(player.tcdr)},
         { label: 'Лідер загону', value: toHours(player.tsql)},
         { label: 'Член загону', value: toHours(player.tsqm)},
