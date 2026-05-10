@@ -19,7 +19,6 @@ const LeaderboardCard = () => {
         const fetchLeaders = async () => {
             try {
                 const data = await stats.getLeaderboard();
-                console.log(data)
                 setLeaders(data.players);
                 setLoading(false);
             } catch (error) {
