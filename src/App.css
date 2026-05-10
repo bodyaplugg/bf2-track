@@ -11,6 +11,7 @@
     --accent-color: #ff9f43;
     --accent-hover: #ffbb73;
     --success-color: #2ed573;
+    --error-color: #ff5252;
     --font-main: 'Google Sans', sans-serif;
     --font-logo: 'Rajdhani', sans-serif;
 }
@@ -33,6 +34,12 @@
     font-weight: 700;
     font-size: 18px;
     position: relative;
+}
+
+.p-error {
+    color: var(--error-color);
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .p-loader::before {

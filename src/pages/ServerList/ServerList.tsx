@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { getServers } from '../../utils/live';
 import './ServerList.css';
 import {gamemodes, gametypes} from "../../utils/config";
+import Loader from "../../components/Loader";
+import ErrorCard from "../../components/ErrorCard";
 
 interface Server {
     ip: string;
@@ -110,12 +112,12 @@ const ServerList: React.FC = () => {
                     ))}
                 </div>
             </div>
-            {isLoading && <div className="p-loader">Loading...</div>}
-            {error && <div className="p-error">{error}</div>}
+            {isLoading && <Loader/>}
+            {error && <ErrorCard msg={'Помилка: ' + error + '.'}/>}
             <div className="pagination-controls">
                 {hasMore && !isLoading && (
                     <button onClick={handleLoadMore} disabled={!nextCursor || !lastServerIp}>
-                        Load More
+                        Більше...
                     </button>
                 )}
             </div>

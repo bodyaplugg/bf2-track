@@ -4,6 +4,8 @@ import { getServer } from '../../utils/live';
 import './Server.css';
 import { Link } from 'react-router-dom';
 import {gamemodes, gametypes} from "../../utils/config";
+import Loader from '../../components/Loader'
+import ErrorCard from "../../components/ErrorCard";
 
 interface Player {
     pid: number;
@@ -127,15 +129,15 @@ const ServerPage: React.FC = () => {
     }, [ip, port]);
 
     if (isLoading) {
-        return <div className="p-loader">Завантаження...</div>;
+        return <Loader/>;
     }
 
     if (error) {
-        return <div className="p-error">Помилка: {error}</div>;
+        return <ErrorCard msg={'Помилка: ' + error + '.'}/>;
     }
 
     if (!server) {
-        return <div className="p-error">Сервер не знайдено.</div>;
+        return <ErrorCard msg="Сервер не знайдено."/>;
     }
 
     const mapDetails = [

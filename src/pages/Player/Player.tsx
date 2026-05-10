@@ -17,6 +17,8 @@ import UnlocksBlock from "./UnlocksBlock/UnlocksBlock";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { setLoading, setPlayerData } from '../../store/playerSlice';
+import Loader from "../../components/Loader";
+import ErrorCard from "../../components/ErrorCard";
 
 const Player: React.FC = () => {
     const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const Player: React.FC = () => {
                 const resultLive = await getPlayerServer(result.player.nick);
                 dispatch(setPlayerData({ data: result, awards: resultAwards, unlocks: resultUnlock, live: resultLive }));
             } catch (e) {
-                console.error(e);
+                return <ErrorCard msg={"Помилка:" + e + "."}/>
             } finally {
                 dispatch(setLoading(false));
             }
@@ -44,8 +46,8 @@ const Player: React.FC = () => {
         loadStats();
     }, [pid, project, dispatch]);
 
-    if (loading) return <div className="p-loader">Завантаження бойового профілю...</div>;
-    if (!data) return <div className="p-error">Гравця не знайдено</div>;
+    if (loading) return <Loader/>;
+    if (!data) return <ErrorCard msg="Гравця не знайдено"/>;
 
     const { player, grouped } = data;
 

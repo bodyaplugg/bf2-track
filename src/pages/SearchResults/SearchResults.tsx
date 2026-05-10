@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { stats, Project } from '../../utils/stats/stats';
 import './SearchResults.css';
+import Loader from "../../components/Loader";
+import ErrorCard from "../../components/ErrorCard";
 
 interface PlayerPreview {
     id: string;
@@ -34,9 +36,9 @@ const SearchResults: React.FC = () => {
                 setResults(formattedResults);
             } catch (err: any) {
                 if (err.message && err.message.includes('ETIMEDOUT')) {
-                    setError(`The ${project} server is not responding. Please try again later.`);
+                    setError(`Сервер ${project} не відповідає. Спробуйте пізніше.`);
                 } else {
-                    setError('Failed to fetch search results.');
+                    setError('Не вдалося здійснити пошук.');
                 }
                 console.error(err);
             } finally {
@@ -48,16 +50,16 @@ const SearchResults: React.FC = () => {
     }, [nickname, project]);
 
     if (isLoading) {
-        return <div className="p-loader">Пошук...</div>;
+        return <Loader/>;
     }
 
     if (error) {
-        return <div className="p-error">Помилка: {error}</div>;
+        return <ErrorCard msg={'Помилка: ' + error}/>;
     }
 
     return (
         <div className="search-results-container">
-            <h2>Search Results for "{nickname}"</h2>
+            <h2>Результати пошуку для: "{nickname}"</h2>
             {results.length > 0 ? (
                 <div className="results-list">
                     {results.map(player => (
@@ -67,7 +69,7 @@ const SearchResults: React.FC = () => {
                     ))}
                 </div>
             ) : (
-                <div className="no-results">No players found.</div>
+                <div className="no-results">Не знайдено гравців.</div>
             )}
         </div>
     );
