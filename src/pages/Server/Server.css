@@ -265,3 +265,36 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.fav-btn {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #888;
+    padding: 6px 12px;
+    margin-top: 7px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.fav-btn:hover {
+    border-color: #ff9d00;
+    color: #eee;
+}
+
+.fav-btn.active {
+    background: rgba(255, 157, 0, 0.1);
+    border-color: #ff9d00;
+    color: #ff9d00;
+}
+
+.star-icon {
+    font-size: 16px;
+    line-height: 1;
+}

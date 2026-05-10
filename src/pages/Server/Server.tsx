@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {gamemodes, gametypes} from "../../utils/config";
 import Loader from '../../components/Loader'
 import ErrorCard from "../../components/ErrorCard";
+import FavoriteButton from "./FavoriteButton";
 
 interface Player {
     pid: number;
@@ -164,6 +165,7 @@ const ServerPage: React.FC = () => {
                         <span>{server.ip}:{server.port}</span>
                         <span className="separator">•</span>
                         <span>{server.gameVersion}</span>
+                        <FavoriteButton serverIp={server.ip+':'+server.port}/>
                     </div>
                 </div>
                 <div className="hero-actions">

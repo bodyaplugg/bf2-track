@@ -80,11 +80,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                 setShowResults(true);
             } catch (error: any) {
                 if (error.message && error.message.includes('ETIMEDOUT')) {
-                    setSearchError(`The ${project} server is not responding.`);
+                    setSearchError(`Серве ${project} не відповідає.`);
                 } else {
-                    setSearchError('Search failed.');
+                    setSearchError('Пошук не вдався.');
                 }
-                console.error("Search error:", error);
+                console.error("Помилка:", error);
                 setSearchResults([]);
             } finally {
                 setIsSearching(false);
@@ -119,7 +119,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
                 <div className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
                     <div className="navbar-links">
-                        <Link to="/servers" className="navbar-link">Servers</Link>
+                        <Link to="/servers" className="navbar-link">Сервери</Link>
                     </div>
                     <div className="navbar-search">
                         <form className="navbar-search-form" onSubmit={handleSubmit}>
