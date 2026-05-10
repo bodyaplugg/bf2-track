@@ -1,0 +1,124 @@
+.leaderboard-card {
+    width: 100%;
+    max-width: 900px;
+    background: #111111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.card-header {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 8px;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #ff9d00;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.card-header .subtitle {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.leaderboard-scroll-area {
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.leaderboard-scroll-area::-webkit-scrollbar {
+    width: 3px;
+}
+.leaderboard-scroll-area::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table th {
+    text-align: left;
+    color: #555;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    position: sticky;
+    top: 0;
+    background: #111111;
+    z-index: 2;
+}
+
+.leaderboard-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #1a1a1a;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.nick-cell b {
+    font-weight: 600;
+    color: #eee;
+    font-size: 15px;
+}
+
+.pos-cell {
+    width: 30px;
+    color: #444;
+}
+
+.rank-cell {
+    width: 50px;
+}
+
+.mini-rank {
+    height: 32px;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+}
+
+.flag-cell {
+    width: 50px;
+    text-align: right;
+}
+
+.mini-flag {
+    height: 12px;
+    opacity: 0.7;
+    border: 1px solid #222;
+}
+
+.leaderboard-table tr:hover td {
+    background: rgba(255, 157, 0, 0.02);
+    color: #fff;
+}
+
+.leaderboard-scroll-area {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.leaderboard-scroll-area::-webkit-scrollbar {
+    width: 2px;
+}
+
+.leaderboard-scroll-area::-webkit-scrollbar-thumb {
+    background: #252525;
+}
+
+.leaderboard-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #161616;
+    color: #bbb;
+    font-size: 13px;
+}

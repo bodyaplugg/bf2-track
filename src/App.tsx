@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import './globals.css';
 import Navbar from "./components/Navbar";
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 import Player from './pages/Player/Player'
 import SearchResults from './pages/SearchResults/SearchResults';
 import ServerList from './pages/ServerList/ServerList';
