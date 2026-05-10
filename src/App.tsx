@@ -8,7 +8,7 @@ import SearchResults from './pages/SearchResults/SearchResults';
 import ServerList from './pages/ServerList/ServerList';
 import ServerPage from './pages/Server/Server';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ScrollToTop from "./pages/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
