@@ -20,7 +20,7 @@ async function fetchFromApi<T>(path: string, params?: Record<string, any>): Prom
             try {
                 (error as any).data = await response.json();
             } catch (e) {
-                // The error response may not be JSON
+
             }
             throw error;
         }
@@ -29,7 +29,7 @@ async function fetchFromApi<T>(path: string, params?: Record<string, any>): Prom
 
     } catch (error) {
         console.error(`Fetch error for ${path}:`, error);
-        throw error; // Re-throw to be handled by the calling component
+        throw error;
     }
 }
 
@@ -47,4 +47,8 @@ export async function getServers(perPage?: number, cursor?: string, after?: stri
 
 export async function getServer(ip: string, port: string | number) {
     return fetchFromApi(`servers/${ip}:${port}`);
+}
+
+export async function getInfo() {
+    return fetchFromApi('livestats')
 }

@@ -52,3 +52,46 @@
     margin-bottom: 20px;
     animation: spin 1s linear infinite;
 }
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    border-color: #ff9d00;
+    box-shadow: 0 0 15px rgba(255, 157, 0, 0.2);
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #ff9d00; /* Твій фірмовий колір */
+    transition: transform 0.2s ease;
+}
+
+.scroll-to-top:hover .arrow-up {
+    transform: translateY(-2px);
+    border-bottom-color: #fff;
+}
