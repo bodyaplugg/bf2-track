@@ -23,22 +23,22 @@ const StatsCard = ({title, config}: CardProps) => {
 
     if (!data) return null;
 
-    const { grouped } = data
-    const { awards } = awardsData;
+    const player = data.data
+    const awards  = awardsData.data;
 
     return (
         <ul className="stats-card">
             <h3>{title}</h3>
             {config.map((config) => {
 
-                const cl = grouped?.classes?.find((c: any) => c.id === config.id);
-                if (!cl || safeNum(cl.tm) === 0) return null;
+                const cl = player?.kits?.find((c: any) => c.id === config.id);
+                if (!cl || safeNum(cl.time) === 0) return null;
 
-                const relevantAwards = awards?.filter((a: any) => a.award === config.awardId);
+                const relevantAwards = awards?.filter((a: any) => a.award == config.awardId);
                 const bestAward = relevantAwards?.sort((a: any, b: any) => safeNum(b.level) - safeNum(a.level))[0];
 
                 const medalLevel = safeNum(bestAward?.level);
-                const vTime = safeNum(cl.tm);
+                const vTime = safeNum(cl.time);
 
                 return (
                     <li className="award-stats-item" key={config.id} style={{  }}>
@@ -55,10 +55,10 @@ const StatsCard = ({title, config}: CardProps) => {
 
                             <div>
                                 <div className="other-stats-row">
-                                    <span>Вбивств: <b>{cl.kl}</b></span>
-                                    <span>Смертей: <b>{cl.dt}</b></span>
+                                    <span>Вбивств: <b>{cl.kills}</b></span>
+                                    <span>Смертей: <b>{cl.deaths}</b></span>
                                     <span>У/С: <b>
-                                {safeNum(cl.dt) === 0 ? cl.kl : (safeNum(cl.kl) / safeNum(cl.dt)).toFixed(2)}
+                                {safeNum(cl.deats) === 0 ? cl.kills : (safeNum(cl.kills) / safeNum(cl.deaths)).toFixed(2)}
                             </b></span>
                                 </div>
                                 {bestAward && (

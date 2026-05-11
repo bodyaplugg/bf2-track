@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getServer } from '../../../utils/live';
+import { getServer } from '../../../service/stats';
 import {Link} from "react-router-dom";
 import './FavoriteServers.css'
 

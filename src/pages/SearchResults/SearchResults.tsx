@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { stats, Project } from '../../utils/stats/stats';
+import { searchPlayers, Project } from '../../service/stats';
 import './SearchResults.css';
 import Loader from "../../components/Loader";
 import ErrorCard from "../../components/ErrorCard";
@@ -28,8 +28,8 @@ const SearchResults: React.FC = () => {
             setIsLoading(true);
             setError(null);
             try {
-                const response = await stats.search(nickname, project);
-                const formattedResults: PlayerPreview[] = (response?.players || []).map((p: any) => ({
+                const response: any = await searchPlayers(nickname, project);
+                const formattedResults: PlayerPreview[] = (response?.results || []).map((p: any) => ({
                     id: p.pid,
                     nickname: p.nick,
                 }));

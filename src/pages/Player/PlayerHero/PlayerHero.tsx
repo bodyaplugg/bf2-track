@@ -8,7 +8,7 @@ import './PlayerHero.css';
 
 const PlayerHero = ({project}: any) => {
     const { data, liveData } = useSelector((state: RootState) => state.player);
-    const { player } = data
+    const player  = data.data
     const live = liveData
     const currentRank = ranksConfig.find(r => r.id === Number(player.rank)) || ranksConfig[0];
 
@@ -46,7 +46,7 @@ const PlayerHero = ({project}: any) => {
                         ></div>
                         <span className="progress-text">
                             {nextRank
-                                ? `${player.scor.toLocaleString()} / ${nextRank.requiredXP.toLocaleString()} XP`
+                                ? `${player.score.toLocaleString()} / ${nextRank.requiredXP.toLocaleString()} XP`
                                 : 'MAX RANK'}
                         </span>
                     </div>
@@ -57,8 +57,8 @@ const PlayerHero = ({project}: any) => {
                 <h1>{player.nick}</h1>
                 <div className="pid-tag">PID: {player.pid} | {project.toUpperCase()}</div>
                 <div className="player-dates">
-                    <span>Служить з: <b>{formatDate(player.jond)}</b></span>
-                    <span>Остання битва: <b>{formatDate(player.lbtl)}</b></span>
+                    <span>Служить з: <b>{formatDate(player.timestamp.joined)}</b></span>
+                    <span>Остання битва: <b>{formatDate(player.timestamp.last_battle)}</b></span>
                 </div>
             </div>
 

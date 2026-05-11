@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getServer } from '../../utils/live';
+import { getServer } from '../../service/stats';
 import './Server.css';
 import { Link } from 'react-router-dom';
 import {gamemodes, gametypes} from "../../utils/config";

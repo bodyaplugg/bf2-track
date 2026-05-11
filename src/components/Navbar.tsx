@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { stats, Project } from "../utils/stats/stats";
+import { searchPlayers, Project } from "../service/stats";
 import { useNavigate, Link } from 'react-router-dom';
 import './Navbar.css';
 
@@ -34,10 +34,11 @@ const Navbar: React.FC<NavbarProps> = () => {
     const debouncedNickname = useDebounce(nickname, 300);
     const navigate = useNavigate();
 
-    const projects: Project[] = ['bf2hub', 'playbf2'];
+    const projects: Project[] = ['bf2hub', 'playbf2', 'b2bf2'];
     const projectDisplayNames: Record<Project, string> = {
         bf2hub: 'BF2Hub',
         playbf2: 'PlayBF2',
+        b2bf2: 'B2BF2',
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -69,9 +70,9 @@ const Navbar: React.FC<NavbarProps> = () => {
             setIsSearching(true);
             setSearchError(null);
             try {
-                const response = await stats.search(debouncedNickname, project);
+                const response: any = await searchPlayers(debouncedNickname, project);
 
-                const formattedResults: PlayerPreview[] = (response?.players || []).map((p: any) => ({
+                const formattedResults: PlayerPreview[] = (response?.results || []).map((p: any) => ({
                     id: p.pid,
                     nickname: p.nick,
                 }));

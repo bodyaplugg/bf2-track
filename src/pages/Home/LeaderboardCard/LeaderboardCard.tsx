@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {stats} from '../../../utils/stats/stats'
+import {getRisingLeaderboard, getScoreLeaderboard} from '../../../service/stats'
 import './LeaderboardCard.css'
 import {Link} from "react-router-dom";
 
 interface LeaderboardPlayer {
     pid: number;
     nick: string;
-    playerrank: number;
-    countrycode: string;
+    rank: number;
+    country_code: string;
     score: number;
 }
 
@@ -18,8 +18,8 @@ const LeaderboardCard = () => {
     useEffect(() => {
         const fetchLeaders = async () => {
             try {
-                const data = await stats.getLeaderboard();
-                setLeaders(data.players);
+                const data: any = await getRisingLeaderboard('bf2hub');
+                setLeaders(data.entries);
                 setLoading(false);
             } catch (error) {
                 console.error("Не вдалось завантажити таблицю лідерів", error);
@@ -33,7 +33,7 @@ const LeaderboardCard = () => {
     return (
         <div className="leaderboard-card">
             <div className="card-header">
-                <h3>Таблиця лідерів</h3>
+                <h3>Кращі гравці за останній тиждень</h3>
             </div>
 
             <div className="leaderboard-scroll-area">
@@ -47,7 +47,7 @@ const LeaderboardCard = () => {
                                 <td className="pos-cell">{index + 1}</td>
                                 <td className="rank-cell">
                                     <img
-                                        src={`/assets/img/ranks/${player.playerrank}.png`}
+                                        src={`/assets/img/ranks/${player.rank}.png`}
                                         alt="rank"
                                         className="mini-rank"
                                     />
@@ -55,9 +55,9 @@ const LeaderboardCard = () => {
                                 <td className="nick-cell"><b> <Link to={`/player/${player.pid}?project=bf2hub`}>{player.nick}</Link></b></td>
                                 <td className="flag-cell">
                                     <img
-                                        src={`https://flagsapi.com/${player.countrycode}/shiny/32.png`}
-                                        alt={player.countrycode}
-                                        title={player.countrycode}
+                                        src={`https://flagsapi.com/${player.country_code}/shiny/32.png`}
+                                        alt={player.country_code}
+                                        title={player.country_code}
                                         onError={(e) => e.currentTarget.style.display = 'none'}
                                     />
                                 </td>

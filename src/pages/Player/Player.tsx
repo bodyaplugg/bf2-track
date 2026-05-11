@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-import { stats } from '../../utils/stats/stats';
-import { getPlayerServer } from "../../utils/live";
+import { getPlayerServer, getPlayer, getPlayerAwards, getPlayerUnlocks } from "../../service/stats";
 import { safeNum, toHours } from "../../utils/formatters";
 import { armyNames, weaponNames, classConfig, vehicleConfig } from '../../utils/config'
 
@@ -32,11 +31,16 @@ const Player: React.FC = () => {
         const loadStats = async () => {
             dispatch(setLoading(true));
             try {
-                const result = await stats.getPlayer(pid!, project);
-                const resultAwards = await stats.getAwards(pid!, project)
-                const resultUnlock = await stats.getUnlocks(pid!, project)
-                const resultLive = await getPlayerServer(result.player.nick);
-                dispatch(setPlayerData({ data: result, awards: resultAwards, unlocks: resultUnlock, live: resultLive }));
+                const result: any = await getPlayer(pid!, project);
+                const resultAwards = await getPlayerAwards(pid!, project)
+                const resultUnlock = await getPlayerUnlocks(pid!, project)
+                const resultLive = await getPlayerServer(result.data.nick);
+                dispatch(setPlayerData({
+                    data: result,
+                    awards: resultAwards,
+                    unlocks: resultUnlock,
+                    live: resultLive
+                }));
             } catch (e) {
                 return <ErrorCard msg={"Помилка:" + e + "."}/>
             } finally {
@@ -49,51 +53,51 @@ const Player: React.FC = () => {
     if (loading) return <Loader/>;
     if (!data) return <ErrorCard msg="Гравця не знайдено"/>;
 
-    const { player, grouped } = data;
+    const player  = data.data;
 
-    const kills = safeNum(player.kill);
-    const deaths = safeNum(player.deth);
-    const score = safeNum(player.scor);
+    const kills = safeNum(player.kills.total);
+    const deaths = safeNum(player.deaths.total);
 
     const generalStats = [
-        { label: 'Загальні очки:', value: score },
-        { label: 'Очки за бій:', value: (score - safeNum(player.twsc) - safeNum(player.cdsc)).toLocaleString() },
-        { label: 'Командні очки:', value: player.twsc },
-        { label: 'Очки командира:', value: player.cdsc },
-        { label: 'Раундів:', value: player.mode0 + player.mode1 + player.mode2 },
-        { label: 'Перемог:', value: player.wins },
-        { label: 'Поразок:', value: player.loss },
+        { label: 'Загальні очки:', value: player.score.total },
+        { label: 'Очки за бій:', value: player.score.combat },
+        { label: 'Командні очки:', value: player.score.teamwork },
+        { label: 'Очки командира:', value: player.score.commander },
+        { label: 'Раундів:', value: player.rounds.conquest + player.rounds.supply_lines + player.rounds.coop },
+        { label: 'Перемог:', value: player.rounds.wins },
+        { label: 'Поразок:', value: player.rounds.losses },
     ];
 
     const teamWorkStats = [
-        { label: 'Прапорів захоплено:', value: player.cpcp },
-        { label: 'Допомог в захоплені:', value: player.cacp },
-        { label: 'Захистів прапора:', value: player.dfcp },
-        { label: 'Допомог у вбивстві:', value: player.kila},
-        { label: 'Лікувань:', value: player.heal},
-        { label: 'Реанімацій:', value: player.rviv},
-        { label: 'Ремонт:', value: player.rsup},
-        { label: 'Поповнення боєзапасу:', value: player.rpar},
-        { label: 'Допомог водієм:', value: player.dsab},
+        { label: 'Прапорів захоплено:', value: player.teamwork.flag_captures },
+        { label: 'Допомог в захоплені:', value: player.teamwork.flag_assists },
+        { label: 'Захистів прапора:', value: player.teamwork.flag_defends },
+        { label: 'Допомог у вбивстві:', value: player.teamwork.kill_assists},
+        { label: 'Лікувань:', value: player.teamwork.heals},
+        { label: 'Реанімацій:', value: player.teamwork.revives},
+        { label: 'Ремонт:', value: player.teamwork.repairs},
+        { label: 'Поповнення боєзапасу:', value: player.teamwork.resupplies},
+        { label: 'Допомог водієм:', value: player.teamwork.driver_assists},
+        { label: 'Водій спеціаліст:', value: player.teamwork.driver_specials},
     ];
 
     const battleStats = [
         { label: 'Вбивства:', value: kills },
         { label: 'Смерті:', value: deaths },
-        { label: 'Влучність:', value: Math.ceil((player.osaa)*100)/100 + '%'},
+        { label: 'Влучність:', value: Math.ceil((player.accuracy)*100)/100 + '%'},
         { label: 'У/C:', value: deaths === 0 ? kills : (kills / deaths).toFixed(2) },
-        { label: 'Смертельніший опонент:', value: player.vmns},
-        { label: 'Найкраща жертва:', value: player.mvns},
-        { label: 'Серія вбивств:', value: player.bksk},
-        { label: 'Самогубств:', value: player.suic},
+        { label: 'Смертельніший опонент:', value: player.relations.top_rival.nick},
+        { label: 'Найкраща жертва:', value: player.relations.top_victim.nick},
+        { label: 'Серія вбивств:', value: player.kills.streak},
+        { label: 'Самогубств:', value: player.deaths.suicides},
     ]
 
     const timeStats = [
-        { label: 'Час у грі:', value: toHours(safeNum(player.time)) },
-        { label: 'Командир', value: toHours(player.tcdr)},
-        { label: 'Лідер загону', value: toHours(player.tsql)},
-        { label: 'Член загону', value: toHours(player.tsqm)},
-        { label: 'Самітник', value: toHours(player.tlwf)},
+        { label: 'Час у грі:', value: toHours(safeNum(player.time.total)) },
+        { label: 'Командир', value: toHours(player.time.commander)},
+        { label: 'Лідер загону', value: toHours(player.time.squad_leader)},
+        { label: 'Член загону', value: toHours(player.time.squad_member)},
+        { label: 'Самітник', value: toHours(player.time.lone_wolf)},
     ]
 
     return (
@@ -113,10 +117,10 @@ const Player: React.FC = () => {
             <div className="other-stats-grid">
                 <div className="stats-card">
                     <h3>Статистика за армії</h3>
-                    {grouped?.armies?.filter((a: any) => safeNum(a.tm) > 0).map((army: any) => {
-                        const aTime = safeNum(army.tm);
-                        const aWins = safeNum(army.wn);
-                        const aLoss = safeNum(army.lo);
+                    {player?.armies?.filter((a: any) => safeNum(a.time) > 0).map((army: any) => {
+                        const aTime = safeNum(army.time);
+                        const aWins = safeNum(army.wins);
+                        const aLoss = safeNum(army.losses);
 
                         return (
                             <div className="other-item" key={army.id}>
@@ -140,11 +144,12 @@ const Player: React.FC = () => {
                 </div>
                 <div className="stats-card">
                     <h3>Статистика зброї</h3>
-                    {grouped?.weapons?.filter((w: any) => safeNum(w.tm) > 0).map((weapon: any) => {
-                        const wTime = safeNum(weapon.tm);
-                        const wKills = safeNum(weapon.kl);
-                        const wDeaths = safeNum(weapon.dt);
-                        const wAccuracy = parseFloat(weapon.ac || 0).toFixed(2);
+                    {player?.weapons?.filter((w: any) => safeNum(w.time) > 0).map((weapon: any) => {
+                        const wTime = safeNum(weapon.time);
+                        const wKills = safeNum(weapon.kills);
+                        const wDeaths = safeNum(weapon.deaths);
+                        const wAccuracy = parseFloat(weapon.accuracy || 0).toFixed(2);
+                        const wKD = safeNum(weapon.kd)
 
                         return (
                             <div className="other-item" key={weapon.id}>
@@ -160,9 +165,7 @@ const Player: React.FC = () => {
                                     <span>Вбивств: <b>{wKills}</b></span>
                                     <span>Смертей: <b>{wDeaths}</b></span>
                                     <span>Влучність: <b>{wAccuracy}%</b></span>
-                                    <span>У/С: <b>
-                                        {wDeaths === 0 ? wKills : (wKills / wDeaths).toFixed(2)}
-                                    </b></span>
+                                    <span>У/С: <b>{wKD}</b></span>
                                 </div>
                             </div>
                         );

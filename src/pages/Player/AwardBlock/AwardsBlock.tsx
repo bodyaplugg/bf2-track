@@ -9,7 +9,7 @@ const AwardsBlock = () => {
 
 
     const playerState = useSelector((state: RootState) => state.player);
-    const awards = playerState?.awardsData?.awards || [];
+    const awards = playerState?.awardsData?.data || [];
 
     const renderAward = (config: any) => {
         const playerAwards = awards.filter((a: any) => String(a.award) === String(config.id));

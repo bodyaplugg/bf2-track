@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import LeaderboardCard from './LeaderboardCard/LeaderboardCard';
 import FavoriteServers from "./FavoriteServers/FavoriteServers";
-import { getInfo } from "../../utils/live";
+import { getInfo } from "../../service/stats";
 
 interface NetworkInfo {
     players: number;

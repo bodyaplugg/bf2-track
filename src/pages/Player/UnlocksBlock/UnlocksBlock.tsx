@@ -7,9 +7,9 @@ import './UnlocksBlock.css';
 
 const UnlocksBlock = () => {
     const { unlocksData } = useSelector((state: RootState) => state.player);
-    if (!unlocksData || !unlocksData.unlocks) return null;
+    if (!unlocksData || !unlocksData.data) return null;
 
-    const unlockedIds = new Set(unlocksData.unlocks.map((u: any) => u.id));
+    const unlockedIds = new Set(unlocksData.data.map((u: any) => u.id));
 
     return (
         <ul className="stats-card unlocks-card">
@@ -17,7 +17,7 @@ const UnlocksBlock = () => {
 
             <div className="unlocks-grid">
                 {unlocksConfig.map(unlock => {
-                    const isUnlocked = unlockedIds.has(unlock.id);
+                    const isUnlocked = unlockedIds.has(Number(unlock.id));
 
                     const bgPosition = `0px -${unlock.spriteIdx * 32}px`;
 
