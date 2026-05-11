@@ -44,15 +44,31 @@
     margin-top: 5px;
 }
 
-
-@media (min-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+.stats-grid {
+    display: grid;
+    gap: 20px;
 }
 
-@media (min-width: 1600px) {
-    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1600px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
     .other-stats-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .player-container {
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-card h3 {
+        font-size: 16px;
+    }
 }
