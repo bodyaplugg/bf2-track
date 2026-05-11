@@ -166,19 +166,34 @@ const ServerPage: React.FC = () => {
                         <span>{server.ip}:{server.port}</span>
                         <span className="separator">•</span>
                         <span>{server.gameVersion}</span>
-
+                        {server.sponsorText && (<><span className="separator">•</span>
+                            <span>{server.sponsorText}</span></>)
+                    }
                     </div>
 
                     <div className="social-links">
                         {server.variables?.discord && <LinkButton title="Discord" to={server.variables.discord} />}
                         {server.variables?.website && <LinkButton title="Сайт" to={server.variables.website} />}
+                        {server.variables?.teamspeak && <LinkButton title="Teamspeak" to={server.variables.teamspeak} />}
                         {server.demoDownload && <LinkButton title="Demo" to={server.demoDownload} />}
                     </div>
+                    {server.sponsorLogoUrl && (
+                        <div className="sponsor-container">
+                            <img
+                                src={server.sponsorLogoUrl}
+                                alt="Sponsor Logo"
+                                className="sponsor-logo"
+                                // Додаємо обробку помилки, якщо посилання бите
+                                onError={(e) => (e.currentTarget.style.display = 'none')}
+                            />
+                        </div>
+                    )}
                 </div>
                 <div className="hero-actions">
                     {server.joinLink && <a href={server.joinLink} className="btn btn-primary btn-lg">Приєднатися</a>}
                     <FavoriteButton serverIp={server.ip+':'+server.port}/>
                 </div>
+
             </div>
 
             <div className="server-content">
