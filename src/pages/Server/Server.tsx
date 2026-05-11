@@ -7,6 +7,7 @@ import {gamemodes, gametypes} from "../../utils/config";
 import Loader from '../../components/Loader'
 import ErrorCard from "../../components/ErrorCard";
 import FavoriteButton from "./FavoriteButton";
+import LinkButton from "../../components/LinkButton";
 
 interface Player {
     pid: number;
@@ -113,7 +114,6 @@ const ServerPage: React.FC = () => {
 
             try {
                 const response: any = await getServer(ip, port);
-                console.log(response)
                 setServer(response);
             } catch (err: any) {
                 let errorMessage = 'Failed to fetch server details.';
@@ -166,15 +166,18 @@ const ServerPage: React.FC = () => {
                         <span>{server.ip}:{server.port}</span>
                         <span className="separator">•</span>
                         <span>{server.gameVersion}</span>
-                        <FavoriteButton serverIp={server.ip+':'+server.port}/>
+
+                    </div>
+
+                    <div className="social-links">
+                        {server.variables?.discord && <LinkButton title="Discord" to={server.variables.discord} />}
+                        {server.variables?.website && <LinkButton title="Сайт" to={server.variables.website} />}
+                        {server.demoDownload && <LinkButton title="Demo" to={server.demoDownload} />}
                     </div>
                 </div>
                 <div className="hero-actions">
                     {server.joinLink && <a href={server.joinLink} className="btn btn-primary btn-lg">Приєднатися</a>}
-                    <div className="social-links">
-                        {server.variables?.discord && <a href={server.variables.discord} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Discord</a>}
-                        {server.variables?.website && <a href={server.variables.website} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Сайт</a>}
-                    </div>
+                    <FavoriteButton serverIp={server.ip+':'+server.port}/>
                 </div>
             </div>
 
