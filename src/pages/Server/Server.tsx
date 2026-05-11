@@ -113,6 +113,7 @@ const ServerPage: React.FC = () => {
 
             try {
                 const response: any = await getServer(ip, port);
+                console.log(response)
                 setServer(response);
             } catch (err: any) {
                 let errorMessage = 'Failed to fetch server details.';
