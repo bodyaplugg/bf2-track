@@ -95,3 +95,21 @@
     transform: translateY(-2px);
     border-bottom-color: #fff;
 }
+
+.not-found {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+}
+
+.not-found>h1 {
+    color: var(--accent-color);
+}
+
+.not-found>a {
+    text-decoration-line: underline;
+}

@@ -9,6 +9,7 @@ import ServerList from './pages/ServerList/ServerList';
 import ServerPage from './pages/Server/Server';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./components/ScrollToTop";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/servers" element={<ServerList />} />
                 <Route path="/servers/:ip/:port" element={<ServerPage />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
             <ScrollToTop/>
         </div>
