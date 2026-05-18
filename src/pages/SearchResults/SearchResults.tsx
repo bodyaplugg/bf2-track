@@ -20,6 +20,10 @@ const SearchResults: React.FC = () => {
     const project = searchParams.get('project') as Project | null;
 
     useEffect(() => {
+        document.title = `BF2-track | Результати пошуку для "${nickname}"`
+    }, []);
+
+    useEffect(() => {
         if (!nickname || !project) {
             return;
         }

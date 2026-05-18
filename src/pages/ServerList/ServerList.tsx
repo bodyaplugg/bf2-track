@@ -70,7 +70,9 @@ const ServerList: React.FC = () => {
 
     useEffect(() => {
         fetchServers();
+        document.title = `BF2-track | Сервери`
     }, []);
+
 
     const handleLoadMore = () => {
         if (hasMore && nextCursor && lastServerIp) {

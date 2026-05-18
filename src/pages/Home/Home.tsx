@@ -11,6 +11,7 @@ interface NetworkInfo {
 
 const Home: React.FC = () => {
     const [info, setInfo] = useState<NetworkInfo>({ players: 0, servers: 0 });
+    document.title = `BF2-track`
 
     useEffect(() => {
         const fetchNetworkInfo = async () => {

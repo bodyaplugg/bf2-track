@@ -35,6 +35,7 @@ const Player: React.FC = () => {
                 const resultAwards = await getPlayerAwards(pid!, project)
                 const resultUnlock = await getPlayerUnlocks(pid!, project)
                 const resultLive = await getPlayerServer(result.data.nick);
+                document.title = `BF2-track | Гравець ${result.data.nick}`
                 dispatch(setPlayerData({
                     data: result,
                     awards: resultAwards,

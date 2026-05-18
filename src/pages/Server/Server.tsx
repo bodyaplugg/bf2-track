@@ -115,6 +115,7 @@ const ServerPage: React.FC = () => {
             try {
                 const response: any = await getServer(ip, port);
                 setServer(response);
+                document.title = `BF2-track | Сервер ${response.name}`
             } catch (err: any) {
                 let errorMessage = 'Failed to fetch server details.';
                 if (err.data && err.data.error) {
