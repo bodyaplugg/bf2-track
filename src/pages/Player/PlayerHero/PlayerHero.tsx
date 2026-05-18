@@ -20,7 +20,7 @@ const PlayerHero = ({project}: any) => {
         const minXP = currentRank.requiredXP;
         const maxXP = nextRank.requiredXP;
 
-        const earned = player.scor - minXP;
+        const earned = player.score.total - minXP;
         const totalNeeded = maxXP - minXP;
 
         progressPercent = Math.min(Math.max((earned / totalNeeded) * 100, 0), 100);
@@ -46,7 +46,7 @@ const PlayerHero = ({project}: any) => {
                         ></div>
                         <span className="progress-text">
                             {nextRank
-                                ? `${player.score.toLocaleString()} / ${nextRank.requiredXP.toLocaleString()} XP`
+                                ? `${player.score.total.toLocaleString()} / ${nextRank.requiredXP.toLocaleString()} XP`
                                 : 'MAX RANK'}
                         </span>
                     </div>
