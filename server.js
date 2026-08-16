@@ -11,7 +11,7 @@ app.use(
         changeOrigin: true,
         secure: false,
         followRedirects: true,
-        pathRewrite: { '/static-stats-v1': '' },
+        pathRewrite: { '^/static-stats-v1': '' },
     })
 );
 
@@ -22,7 +22,7 @@ app.use(
         changeOrigin: true,
         secure: false,
         followRedirects: true,
-        pathRewrite: { '/static-stats-v2': '' },
+        pathRewrite: { '^/static-stats-v2': '' },
     })
 );
 
