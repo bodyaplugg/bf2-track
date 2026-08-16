@@ -7,7 +7,7 @@ const app = express();
 app.use(
     '/static-stats-v1',
     createProxyMiddleware({
-        target: 'https://aspxstats.cetteup.com/v2/',
+        target: 'https://aspxstats.cetteup.com/v1/',
         changeOrigin: true,
         secure: false,
         followRedirects: true,
