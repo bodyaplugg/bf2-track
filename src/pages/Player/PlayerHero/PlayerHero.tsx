@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 import './PlayerHero.css';
 
 const PlayerHero = ({project}: any) => {
-    const { data, liveData } = useSelector((state: RootState) => state.player);
+    const { data, liveData, leaderboard } = useSelector((state: RootState) => state.player);
     const player  = data.data
     const live = liveData
-    const currentRank = ranksConfig.find(r => r.id === Number(player.rank)) || ranksConfig[0];
+    const leaderboardPosition = leaderboard?.entries?.[0]?.n;
 
+    const currentRank = ranksConfig.find(r => r.id === Number(player.rank)) || ranksConfig[0];
     const nextRank = ranksConfig.find(r => r.requiredXP > currentRank.requiredXP);
 
     let progressPercent = 100;
@@ -55,7 +56,17 @@ const PlayerHero = ({project}: any) => {
 
             <div className="nick-info">
                 <h1>{player.nick}</h1>
-                <div className="pid-tag">PID: {player.pid} | {project.toUpperCase()}</div>
+                <div className="pid-tag">
+                    PID: {player.pid} | {project.toUpperCase()}
+                    {leaderboardPosition && (
+                        <>
+                            {' | '}
+                            <Link to={`/leaderboard?project=${project}&category=overall&pid=${player.pid}`}>
+                                #{leaderboardPosition.toLocaleString()} у таблиці лідерів
+                            </Link>
+                        </>
+                    )}
+                </div>
                 <div className="player-dates">
                     <span>Служить з: <b>{formatDate(player.timestamp.joined)}</b></span>
                     <span>Остання битва: <b>{formatDate(player.timestamp.last_battle)}</b></span>

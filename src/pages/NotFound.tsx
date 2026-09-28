@@ -3,7 +3,7 @@ import {useEffect} from "react";
 
 const NotFound = () => {
     useEffect(() => {
-        document.title = `BF2-track | Сторінка не знайдена`
+        document.title = `BF2-track | 404`
     })
     return (
         <div className="not-found">

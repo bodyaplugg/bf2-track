@@ -7,6 +7,7 @@ import Player from './pages/Player/Player'
 import SearchResults from './pages/SearchResults/SearchResults';
 import ServerList from './pages/ServerList/ServerList';
 import ServerPage from './pages/Server/Server';
+import Leaderboard from './pages/Leaderboard/Leaderboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./pages/NotFound";
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/servers" element={<ServerList />} />
                 <Route path="/servers/:ip/:port" element={<ServerPage />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <ScrollToTop/>

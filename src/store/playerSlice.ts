@@ -6,6 +6,7 @@ interface PlayerState {
     unlocksData: any | null;
     liveData: any | null;
     loading: boolean;
+    leaderboard: any | null;
 }
 
 const initialState: PlayerState = {
@@ -14,6 +15,7 @@ const initialState: PlayerState = {
     unlocksData: null,
     liveData: null,
     loading: false,
+    leaderboard: null,
 };
 
 const playerSlice = createSlice({
@@ -23,11 +25,12 @@ const playerSlice = createSlice({
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.loading = action.payload;
         },
-        setPlayerData: (state, action: PayloadAction<{data: any, awards: any, unlocks: any, live: any}>) => {
+        setPlayerData: (state, action: PayloadAction<{data: any, awards: any, unlocks: any, live: any, leaderboard: any}>) => {
             state.data = action.payload.data;
             state.awardsData = action.payload.awards;
             state.unlocksData = action.payload.unlocks;
             state.liveData = action.payload.live;
+            state.leaderboard = action.payload.leaderboard;
         }
     },
 });

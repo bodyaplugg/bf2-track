@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-import { getPlayerServer, getPlayer, getPlayerAwards, getPlayerUnlocks } from "../../service/stats";
+import {getPlayerServer, getPlayer, getPlayerAwards, getPlayerUnlocks, getScoreLeaderboard} from "../../service/stats";
 import { safeNum, toHours } from "../../utils/formatters";
 import { armyNames, weaponNames, classConfig, vehicleConfig } from '../../utils/config'
 
@@ -35,12 +35,14 @@ const Player: React.FC = () => {
                 const resultAwards = await getPlayerAwards(pid!, project)
                 const resultUnlock = await getPlayerUnlocks(pid!, project)
                 const resultLive = await getPlayerServer(result.data.nick);
+                const leaderboardPlace = await getScoreLeaderboard('overall', project, { pid: pid! })
                 document.title = `BF2-track | Гравець ${result.data.nick}`
                 dispatch(setPlayerData({
                     data: result,
                     awards: resultAwards,
                     unlocks: resultUnlock,
-                    live: resultLive
+                    live: resultLive,
+                    leaderboard: leaderboardPlace
                 }));
             } catch (e) {
                 return <ErrorCard msg={"Помилка:" + e + "."}/>

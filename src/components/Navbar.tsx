@@ -121,6 +121,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <div className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
                     <div className="navbar-links">
                         <Link to="/servers" className="navbar-link">Сервери</Link>
+                        <Link to="/leaderboard" className="navbar-link">Лідери</Link>
                     </div>
                     <div className="navbar-search">
                         <form className="navbar-search-form" onSubmit={handleSubmit}>
