@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import {getPlayerServer, getPlayer, getPlayerAwards, getPlayerUnlocks, getScoreLeaderboard} from "../../service/stats";
@@ -22,6 +22,7 @@ import ErrorCard from "../../components/ErrorCard";
 const Player: React.FC = () => {
     const dispatch = useDispatch();
     const { data, loading } = useSelector((state: RootState) => state.player);
+    const [loadError, setLoadError] = useState<string | null>(null);
 
     const { pid } = useParams<{ pid: string }>();
     const [searchParams] = useSearchParams();
@@ -30,8 +31,15 @@ const Player: React.FC = () => {
     useEffect(() => {
         const loadStats = async () => {
             dispatch(setLoading(true));
+            setLoadError(null);
             try {
+                if (!pid) {
+                    throw new Error('Не вказано ID гравця.');
+                }
                 const result: any = await getPlayer(pid!, project);
+                if (!result) {
+                    throw new Error('Гравця не знайдено.');
+                }
                 const resultAwards = await getPlayerAwards(pid!, project)
                 const resultUnlock = await getPlayerUnlocks(pid!, project)
                 const resultLive = await getPlayerServer(result.data.nick);
@@ -45,7 +53,7 @@ const Player: React.FC = () => {
                     leaderboard: leaderboardPlace
                 }));
             } catch (e) {
-                return <ErrorCard msg={"Помилка:" + e + "."}/>
+                setLoadError(`Помилка: ${e instanceof Error ? e.message : String(e)}.`);
             } finally {
                 dispatch(setLoading(false));
             }
@@ -54,6 +62,7 @@ const Player: React.FC = () => {
     }, [pid, project, dispatch]);
 
     if (loading) return <Loader/>;
+    if (loadError) return <ErrorCard msg={loadError}/>;
     if (!data) return <ErrorCard msg="Гравця не знайдено"/>;
 
     const player  = data.data;

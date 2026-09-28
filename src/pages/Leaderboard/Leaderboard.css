@@ -1,0 +1,190 @@
+.leaderboard-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+    color: #eee;
+    font-family: var(--font-main);
+}
+
+.leaderboard-page-header {
+    margin-bottom: 22px;
+}
+
+.leaderboard-page-header h1 {
+    margin: 4px 0 6px;
+    color: #ff9d00;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 34px;
+    text-transform: uppercase;
+}
+
+.leaderboard-page-header p {
+    color: #888;
+}
+
+.leaderboard-page-header .leaderboard-eyebrow {
+    margin: 0;
+    color: #666;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.leaderboard-panel {
+    padding: 20px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+}
+
+.leaderboard-panel .p-loader,
+.leaderboard-panel .p-error {
+    font-family: var(--font-main);
+}
+
+.leaderboard-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.leaderboard-filters label {
+    display: flex;
+    flex: 1 1 190px;
+    flex-direction: column;
+    gap: 6px;
+    color: #777;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.leaderboard-filters select {
+    min-height: 40px;
+    padding: 8px 12px;
+    color: #eee;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font: inherit;
+}
+
+.leaderboard-filters select:focus-visible,
+.leaderboard-pagination button:focus-visible,
+.leaderboard-player-link:focus-visible {
+    outline: 2px solid #ff9d00;
+    outline-offset: 2px;
+}
+
+.leaderboard-table-wrap {
+    overflow-x: auto;
+}
+
+.full-leaderboard-table th {
+    text-align: left;
+}
+
+.full-leaderboard-table td {
+    height: 48px;
+}
+
+.full-leaderboard-table .leaderboard-position {
+    width: 100px;
+    color: #888;
+    font-variant-numeric: tabular-nums;
+}
+
+.leaderboard-rank {
+    display: block;
+    width: auto;
+    height: 32px;
+}
+
+.leaderboard-player-link {
+    color: #eee;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.leaderboard-player-link:hover {
+    color: #ff9d00;
+}
+
+.leaderboard-country {
+    white-space: nowrap;
+}
+
+.leaderboard-country img {
+    width: 24px;
+    height: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.full-leaderboard-table tr.current-player td {
+    background: rgba(255, 157, 0, 0.12);
+}
+
+.full-leaderboard-table .leaderboard-empty {
+    padding: 28px;
+    color: #888;
+    text-align: center;
+}
+
+.leaderboard-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.leaderboard-pagination button {
+    padding: 8px 12px;
+    color: #ddd;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.leaderboard-pagination button:hover:not(:disabled) {
+    color: #ff9d00;
+    border-color: #ff9d00;
+}
+
+.leaderboard-pagination button:disabled {
+    color: #555;
+    cursor: not-allowed;
+}
+
+.leaderboard-pagination span {
+    padding: 0 8px;
+    color: #888;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .leaderboard-page {
+        padding: 20px 12px 32px;
+    }
+
+    .leaderboard-panel {
+        padding: 12px;
+    }
+
+    .leaderboard-page-header h1 {
+        font-size: 28px;
+    }
+
+    .leaderboard-pagination {
+        gap: 6px;
+    }
+
+    .leaderboard-pagination button {
+        padding: 7px 9px;
+        font-size: 12px;
+    }
+}
